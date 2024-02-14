@@ -1,4 +1,4 @@
-package src1;
+package Assignment1;
 
 public class fourth {
     public static String bin1="011110";

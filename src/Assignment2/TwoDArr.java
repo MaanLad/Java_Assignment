@@ -1,4 +1,4 @@
-package src2;
+package Assignment2;
 
 public class TwoDArr {
     public static void main(String[] args) {

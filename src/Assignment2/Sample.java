@@ -1,8 +1,7 @@
-package src2;
+package Assignment2;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.HashMap;
+
 public class Sample {
     public static ArrayList<String> newList=new ArrayList<String>();
 

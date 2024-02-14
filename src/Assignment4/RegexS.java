@@ -1,4 +1,4 @@
-package src4;
+package Assignment4;
 
 import java.util.regex.Pattern;
 
@@ -6,7 +6,7 @@ public class RegexS {
     public static void main(String[] args) {
         //1.Create a regular expression that accepts alphanumeric characters only. Its length must be six characters long only.
         String regEx="[0-9a-zA-Z]{6}";
-        String input="aba3";
+        String input= "aba3";
 
         //2.Create a regular expression that accepts 10 digit numeric characters starting with 7, 8 or 9 only
         String regEx2="[789][0-9]{9}";

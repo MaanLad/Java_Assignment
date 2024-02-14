@@ -1,4 +1,4 @@
-package src1;
+package Assignment1;
 
 public class Third {
 

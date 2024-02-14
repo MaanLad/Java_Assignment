@@ -1,6 +1,4 @@
-package src3;
-
-import org.w3c.dom.ls.LSOutput;
+package Assignment3;
 
 import java.util.Scanner;
 

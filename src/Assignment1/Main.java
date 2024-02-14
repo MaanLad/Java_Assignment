@@ -1,4 +1,4 @@
-package src1;
+package Assignment1;
 
 //Java Program to Remove Duplicate Elements From the Array
 public class Main {

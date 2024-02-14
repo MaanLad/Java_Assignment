@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class Fifth {
     public static void main(String[] args) {
-        String s1 = "Dhruv";
-        String s2 = "Parekh";
+        String s1 = "Maan";
+        String s2 = "Laadd";
 
 
         s1 = s1 + ", " + s2;

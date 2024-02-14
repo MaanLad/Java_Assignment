@@ -8,10 +8,13 @@ public class Fifth {
         String s1 = "Maan";
         String s2 = "Laadd";
 
-
-        s1 = s1 + ", " + s2;
+        System.out.println("Before :-");
         System.out.print("S1 ");
         System.out.println(s1);
+        System.out.print("S2 ");
+        System.out.println(s2);
+        s1 = s1 + ", " + s2;
+
 
         Pattern r = Pattern.compile("^(.*?),\\s*(.*?)$");
         Matcher m = r.matcher(s1);
@@ -21,6 +24,7 @@ public class Fifth {
             s2 = m.group(1);
         }
 
+        System.out.println("After:-");
         System.out.print("S1 ");
         System.out.println(s1);
         System.out.print("S2 ");

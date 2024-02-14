@@ -2,7 +2,6 @@ package src4;
 
 import java.util.regex.Pattern;
 
-//4.Print first letter of each word in a string using regex
 public class RegexS {
     public static void main(String[] args) {
         //1.Create a regular expression that accepts alphanumeric characters only. Its length must be six characters long only.
@@ -15,7 +14,7 @@ public class RegexS {
 
         //3.Check if a given string is Pangram in Java
         String regEx3= "^(?=.*a)(?=.*b)(?=.*c)(?=.*d)(?=.*e)(?=.*f)(?=.*g)(?=.*h)(?=.*i)(?=.*j)(?=.*k)(?=.*l)(?=.*m)(?=.*n)(?=.*o)(?=.*p)(?=.*q)(?=.*r)(?=.*s)(?=.*t)(?=.*u)(?=.*v)(?=.*w)(?=.*x)(?=.*y)(?=.*z)[a-zA-Z]{26,}$";
-        String input3="qwertgyuiopasdfghjklzxcvbnmfadfadfa";
+        String input3="qwertyuiopasdfghjklzxcvbnmm";
 
 
 

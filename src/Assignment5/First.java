@@ -43,8 +43,14 @@ class Bank {
     }
 
     public int withdrawAmount(int amount) {
-        this.balance = balance - amount;
-        return this.getBalance();
+        if(amount>this.balance){
+            System.out.println("Not enough balance to withdraw");
+            return this.balance;
+        }else{
+            this.balance = balance - amount;
+            return this.getBalance();
+        }
+
     }
 
 }

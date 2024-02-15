@@ -33,7 +33,6 @@ public class Tenth {
         for (int i = 0; i < strs.length; i++) {
             List<String> sublist=new ArrayList<String>();
             char[] arr=strs[i].toCharArray();
-            char[] arr=strs[i].toCharArray();
             sublist.add(strs[i]);
             Arrays.sort(arr);
             if(hasValue(Arrays.toString(arr))){

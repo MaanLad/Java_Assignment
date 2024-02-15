@@ -65,6 +65,8 @@ public class Tenth {
         for (int i = 0; i < lst.size(); i++) {
             System.out.println(lst.get(i));
         }
+
+
     }
 
 }

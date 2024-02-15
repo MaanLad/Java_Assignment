@@ -16,8 +16,11 @@ public class Tenth {
     }
     public static ArrayList<String> newList=new ArrayList<String>();
 
+
+    //This method checks if the  anagrams encounter again for grouping
     public static boolean hasValue(String str){
 
+        //if anagram already grouped then return false to group again
         if(newList.contains(str)){
             return false;
         }
@@ -54,7 +57,7 @@ public class Tenth {
         //Calling the method with two string
         System.out.println("Check anagram :-"+checkAnagram("maan","aanm"));
 
-        String[] strs = {"art","rat","tar","meats","steam"};
+        String[] strs = {"art","rat","teams","tar","meats","steam"};
         System.out.println();
         System.out.println("Input array :- "+Arrays.toString(strs));
         System.out.println("Output :- ");

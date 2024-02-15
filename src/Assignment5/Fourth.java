@@ -9,13 +9,13 @@ public class Fourth {
         double value=sc.nextInt();
         double incomeTax;
         if(value>150000){
-            incomeTax=(value*30)/100;
+            incomeTax=((value-150000)*0.3)+(0.2*90000)+(0.1*10000);
         }
         else if(value>60000){
-            incomeTax=(value*20)/100;
+            incomeTax=((value-60000)*0.2)+(0.1*100000);
         }
         else if(value>50000){
-            incomeTax=(value*10)/100;
+            incomeTax=(value-50000)*0.1;
         }
         else{
             incomeTax=0;

@@ -1,7 +1,7 @@
 package Assignment5;
 
 
-abstract class Employee {dsf
+abstract class Employee {
 
     abstract double getNetSalary();
 

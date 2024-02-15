@@ -9,7 +9,7 @@ public class Eight {
         System.out.print("Enter Username :- ");
         while(true){
             String uName =sc.next();
-            String regEx="^[a-zA-Z][a-zA-Z0-9_]*{8,30}$";
+            String regEx="^[a-zA-Z][a-zA-Z0-9_]{8,30}$";
             if(Pattern.matches(regEx,uName)){
                 System.out.println("The Username is valid");
                 break;

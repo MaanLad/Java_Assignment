@@ -66,7 +66,6 @@ public class First {
         Bank b1=Bank.getInstance("1234567");
         Bank b2=Bank.getInstance("123456");
         System.out.println("Current balance (Retrieving balance) of accNo "+b1.accNo+" :- " + b1.getBalance());
-        System.out.println("Current balance (Retrieving balance) of accNo "+b2.accNo+" :- " + b2.getBalance());
-
+        System.out.println("Current balance (Retrieving balance) of accNo " + b2.accNo + " :- " + b2.getBalance());
     }
 }

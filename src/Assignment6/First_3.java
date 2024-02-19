@@ -4,14 +4,8 @@ import java.util.stream.Collectors;
 
 public class First_3 {
     public static void main(String[] args) {
-        List<Integer> arrList=new ArrayList<Integer>();
-        arrList.add(1);
-        arrList.add(1);
-        arrList.add(2);
-        arrList.add(3);
-        arrList.add(2);
-        arrList.add(3);
-        arrList.add(1);
+        Integer[] arr = {1, 1, 2, 3, 2 ,3 ,1};
+        List<Integer> arrList= Arrays.asList(arr);
         System.out.println(arrList);
 //        System.out.println(arrList.stream().distinct().collect(Collectors.toList()));
 //        List<Long> frequencyList= arrList.stream()

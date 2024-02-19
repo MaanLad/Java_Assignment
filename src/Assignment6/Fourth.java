@@ -9,7 +9,7 @@ public class Fourth {
         String sampleSqlQuery="select * from student";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/students","root","");
+            Connection conn= DriverManager.getConnection("jdbc:sqlserver://maanlad; trustServerCertificate=true;databaseName = students","sa","test123");
             if(conn!=null){
                 System.out.println("Database is connected");
                 Statement st=conn.createStatement();

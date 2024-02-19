@@ -11,6 +11,6 @@ public class Third {
     }
 
     public static void main(String[] args) {
-        System.out.println(generateFib(10));
+        System.out.println(generateFib(50));
     }
 }

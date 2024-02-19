@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class First_2 {
     public static void main(String[] args) {
-        Integer[] arr = {19, 12, 31, 40, 34,40};
+        Integer[] arr = {19, 12, 31, 40, 34, 40};
         List<Integer> arrLst= Arrays.asList(arr);
         List<Integer> newArrLst= arrLst.stream().sorted(Comparator.reverseOrder()).distinct().toList();
         System.out.println(newArrLst);

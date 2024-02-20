@@ -12,7 +12,7 @@ public class LongestCommonSequence {
             for (int i = 0; i <nums.length ; i++) {
             arrlist.add(nums[i]);
         }
-            int result=0;
+            int result=1;
             int count=0;
             int i=0;
         List<Integer> arrlist = arrList.stream().distinct().toList();
@@ -23,14 +23,14 @@ public class LongestCommonSequence {
                     count++;
                 }else{
                     if(count>result){
-                        result=count+1;
+                        result=count;
                     }
                     count=0;
                 }
                 i++;
             }
             if(count>result){
-                result=count+1;
+                result=count;
             }
         System.out.println(result);
     }

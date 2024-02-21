@@ -24,5 +24,4 @@ public class Third implements Runnable{
         th2.start();
         System.out.println("Main method ended");
     }
-
 }

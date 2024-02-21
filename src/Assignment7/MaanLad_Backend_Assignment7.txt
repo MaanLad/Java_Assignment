@@ -86,7 +86,7 @@ class WorkerThread implements Runnable{
     public void run() {
         System.out.println(Thread.currentThread().getName()+" thread started worker:"+this.message);
         threadTask();
-        System.out.println(Thread.currentThread().getName()+" thread ended worker:"+this.message);
+        System.out.println(Thread.currentThread().getName()+" thread ended");
     }
 
     private void threadTask(){

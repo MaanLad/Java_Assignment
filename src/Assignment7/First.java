@@ -10,5 +10,4 @@ public class First implements Runnable{
             Thread th1=new Thread(r1);
             th1.start();
     }
-
 }

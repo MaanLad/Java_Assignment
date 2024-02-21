@@ -1,7 +1,7 @@
 package Assignment7;
 
-public class Fifth {
-    public static void main(String[] args)  {
+public class Fifth{
+    public static void main(String[] args) throws InterruptedException {
         Thread th1=new Thread(new Runnable() {
             @Override
             public void run() {
@@ -20,7 +20,9 @@ public class Fifth {
             }
         });
         th1.start();
+        th1.join();
         th2.start();
-        System.out.println("Main method ended");
+        th2.join();
+        System.out.println(Thread.currentThread().getName());
     }
 }

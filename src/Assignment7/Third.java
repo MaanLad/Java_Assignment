@@ -1,30 +1,28 @@
 package Assignment7;
 
+
 public class Third implements Runnable{
-    String name;
-    Thread th;
     @Override
     public void run() {
         try{
+            System.out.println("Thread "+Thread.currentThread().getName()+" started");
             for (int i = 0; i < 3; i++) {
-                System.out.println(name+i);
                 Thread.sleep(1000);
+                System.out.println("Thread " +Thread.currentThread().getName()+" is running "+i);
             }
+            System.out.println("Thread "+Thread.currentThread().getName()+" ended");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    Third(String input){
-        name=input;
-        th=new Thread(this,name);
-        System.out.println("Thread with name "+name+" created");
-        th.start();
-    }
     public static void main(String[] args) {
-        Third mThread1=new Third("maan");
-        Third mThread2=new Third("jhon");
-        System.out.println("Main method eneded");
+        //Multiple threads of main thread
+        Thread th1=new Thread(new Third());
+        Thread th2=new Thread(new Third());
+        th1.start();
+        th2.start();
+        System.out.println("Main method ended");
     }
 
 }

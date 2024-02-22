@@ -1,0 +1,428 @@
+=================================================1======================================================
+package Assignment5;
+
+import java.util.HashMap;
+import java.util.Map;
+
+class Bank {
+    private static final Map<String, Bank> bankInstances=new HashMap<>();
+    String accNo;
+    int balance = 0;
+
+    Bank(String accNo) {
+        this.accNo = accNo;
+        bankInstances.put(accNo,this);
+    }
+
+    ;
+
+    Bank(String accNo, int balance) {
+        this.accNo = accNo;
+        this.balance = balance;
+        bankInstances.put(accNo,this);
+    }
+
+    public static Bank getInstance(String accNo) {
+        if (bankInstances.containsKey(accNo)) {
+            // Return existing instance if accNo already exists
+            return bankInstances.get(accNo);
+        } else {
+            // Create a new instance if accNo doesn't exist
+            Bank newBankInstance = new Bank(accNo);
+            bankInstances.put(accNo, newBankInstance);
+            return newBankInstance;
+        }
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public int depositAmount(int amount) {
+        this.balance = balance + amount;
+        return this.getBalance();
+    }
+
+    public int withdrawAmount(int amount) {
+        if(amount>this.balance){
+            System.out.println("Not enough balance to withdraw");
+            return this.balance;
+        }else{
+            this.balance = balance - amount;
+            return this.getBalance();
+        }
+
+    }
+
+}
+
+public class First {
+    public static void main(String[] args) {
+        Bank b = new Bank("123456", 40000);
+        System.out.println("Current balance (Retrieving balance) of accNo "+b.accNo+" :- " + b.getBalance());
+        System.out.println("Withdraw certain amount (Retrieving amount after withdraw) from accNo "+b.accNo+" :- " + b.withdrawAmount(10000));
+        System.out.println("Deposit certain amount (Retrieving amount after deposit) to accNo "+b.accNo+" :- " + b.depositAmount(15000));
+        System.out.println();
+        System.out.println("Instances by the getInstance method");
+        Bank b1=Bank.getInstance("1234567");
+        Bank b2=Bank.getInstance("123456");
+        System.out.println("Current balance (Retrieving balance) of accNo "+b1.accNo+" :- " + b1.getBalance());
+        System.out.println("Current balance (Retrieving balance) of accNo "+b2.accNo+" :- " + b2.getBalance());
+
+    }
+}
+
+=================================================2======================================================
+package Assignment5;
+
+
+abstract class Employee {
+
+    abstract double getNetSalary();
+
+    abstract void display();
+}
+
+class Manager extends Employee {
+
+    String employeeId;
+    String name;
+    double salary;
+
+    Manager(){}
+
+    Manager(String employeeId,String name, double salary) {
+        this.employeeId=employeeId;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    double getNetSalary() {
+        return this.salary * 12;
+    }
+
+    @Override
+    void display() {
+        if(this.employeeId==null){
+            System.out.println("Enter required details of new manager!!");
+        }else{
+        System.out.println("Employee Id :- "+this.employeeId);
+        System.out.println("Manager name :- " + this.name);
+        System.out.println("Manager salary :- " + this.salary);
+        System.out.println("Manager netSalary :- "+this.getNetSalary());
+    }
+        }
+}
+
+class Clerk extends Employee {
+
+    String clerkId;
+    String name;
+    double salary;
+
+    Clerk(){}
+
+    public Clerk(String clerkId,String name, int salary) {
+        this.clerkId=clerkId;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    double getNetSalary() {
+        return this.salary * 12;
+    }
+
+    @Override
+    void display() {
+
+        if(this.clerkId==null){
+            System.out.println("Enter required details of new clerk!!");
+        }else{
+        System.out.println("Clerk id :- " + this.clerkId);
+        System.out.println("Clerk name :- " + this.name);
+        System.out.println("Clerk salary :- " + this.salary);
+        System.out.println("Clerk netSalary :- " + this.getNetSalary());
+        }
+    }
+}
+
+
+public class Second {
+    public static void main(String[] args) {
+
+        //Manager class object
+        Manager m = new Manager("MNG123","Maan", 300000);
+        m.display();
+
+        System.out.println();
+
+
+        //Clerk class object
+        Clerk c=new Clerk("CL123","John",20000);
+        c.display();
+
+        System.out.println();
+        //Clerk object with not details
+        Clerk c1=new Clerk();
+        c1.display();
+    }
+}
+
+=================================================3======================================================
+package Assignment5;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+class InvalidInputToArrayException extends Exception{
+    public InvalidInputToArrayException(String str){
+        super(str);
+    }
+}
+
+
+public class Third {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int [] arr=new int[5];
+        try {
+        for (int i = 0; i <arr.length; i++) {
+            System.out.print("Enter element at postion["+i+"] :- ");
+            int temp=sc.nextInt();
+            if(temp<0) throw new InvalidInputToArrayException("Enter valid input to array");
+            arr[i]=temp;
+            System.out.println();
+        }
+        }catch (InvalidInputToArrayException e){
+        System.out.println(e.getMessage());
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+=================================================4======================================================
+package Assignment5;
+
+import java.util.Scanner;
+
+public class Fourth {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the salary :- ");
+        double value=sc.nextInt();
+        double incomeTax;
+        if(value>150000){
+            incomeTax=((value-150000)*0.3)+(0.2*90000)+(0.1*10000);
+        }
+        else if(value>60000){
+            incomeTax=((value-60000)*0.2)+(0.1*100000);
+        }
+        else if(value>50000){
+            incomeTax=(value-50000)*0.1;
+        }
+        else{
+            incomeTax=0;
+        }
+        System.out.println("Income is:- "+incomeTax);
+    }
+}
+
+=================================================5======================================================
+package Assignment5;
+import java.util.Scanner;
+
+
+public class Fifth {
+        public static void main(String args[]){
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Input: ");
+            int n = sc.nextInt();
+            System.out.println("Output: ");
+                switch(n)
+                {
+                    case 0:
+                        System.out.println(" __ \n|  | \n|__|");
+                        break;
+                    case 1:
+                        System.out.println("   \n  |\n  |");
+                        break;
+                    case 2:
+                        System.out.println(" __ \n __|\n|__ ");
+                        break;
+                    case 3:
+                        System.out.println(" __ \n __|\n __|");
+                        break;
+                    case 4:
+                        System.out.println("   \n|__|\n   |");
+                        break;
+                    case 5:
+                        System.out.println(" __ \n|__ \n __|");
+                        break;
+                    case 6:
+                        System.out.println(" __ \n|__ \n|__|");
+                        break;
+                    case 7:
+                        System.out.println(" __ \n   |\n   |");
+                        break;
+                    case 8:
+                        System.out.println(" __ \n|__|\n|__|");
+                        break;
+                    case 9:
+                        System.out.println(" __ \n|__|\n __|");
+                        break;
+                }
+
+        }
+}
+
+=================================================6======================================================
+package Assignment5;
+
+public class Sixth {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 50; i++) {
+            if(i%3==0 && i%5==0){
+                System.out.println("FizzBuzz");
+            }
+            else if(i%3==0){
+                System.out.println("Fizz");
+            }
+            else if(i%5==0){
+                System.out.println("Buzz");
+            }
+            else{
+                System.out.println(i);
+            }
+        }
+    }
+}
+
+=================================================7======================================================
+package Assignment5;
+
+public class Seventh {
+    public static void main(String[] args) {
+        String name="maan";
+        System.out.println("Input :- "+name);
+        String ans = name.split("\\b\\w")[1];
+        System.out.print("Pig latin translated :- ");
+        System.out.println(ans+name.charAt(0)+"ay");
+        }
+    }
+=================================================8======================================================
+package Assignment5;
+
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class Eight {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter Username :- ");
+        while(true){
+            String uName =sc.next();
+            String regEx="^[a-zA-Z][a-zA-Z0-9_]{8,30}$";
+            if(Pattern.matches(regEx,uName)){
+                System.out.println("The Username is valid");
+                break;
+            }
+            else{
+                System.out.println("Enter valid Username");
+            }
+        }
+    }
+}
+
+=================================================9======================================================
+package Assignment5;
+
+public class Ninth {
+
+    static void printSubstring(String str,int beginIndex,int endIndex){
+        char[] chArr = endIndex <= str.length() ? str.substring(beginIndex, endIndex+1).toCharArray() :
+                str.substring(beginIndex, str.length()).toCharArray();
+        for(char a : chArr) System.out.println(a);
+    }
+    public static void main(String[] args) {
+        String str="maanlad";
+        System.out.print("Input String :- "+str+"\n");
+        int beginIndex=1;
+        int endIndex=4;
+        System.out.println("StartIndex:-"+beginIndex+"  EndingIndex:-"+endIndex);
+        printSubstring(str,beginIndex,endIndex);
+    }
+}
+
+=================================================10======================================================
+package Assignment5;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Tenth {
+
+    //Method to check whether the given two strings are anagram or not
+    public static boolean checkAnagram(String str1,String str2){
+        char[] arr1=str1.toCharArray();
+        char[] arr2=str2.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1,arr2);
+    }
+    public static ArrayList<String> newList=new ArrayList<String>();
+
+
+    //This method checks if the  anagrams encounter again for grouping
+    public static boolean hasValue(String str){
+
+        //if anagram already grouped then return false to group again
+        if(newList.contains(str)){
+            return false;
+        }
+        else{
+            newList.add(str);
+            return true;
+        }
+    }
+
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>>  list= new ArrayList<List<String>>();
+
+        for (int i = 0; i < strs.length; i++) {
+            List<String> sublist=new ArrayList<String>();
+            char[] arr=strs[i].toCharArray();
+            sublist.add(strs[i]);
+            Arrays.sort(arr);
+            if(hasValue(Arrays.toString(arr))){
+                for (int j = 0; j < strs.length; j++) {
+                    char[] arr2=strs[j].toCharArray();
+                    Arrays.sort(arr2);
+                    if(i!=j && Arrays.equals(arr2,arr)){
+                        sublist.add(strs[j]);
+                    }
+                }
+                list.add(sublist);
+            }
+
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        //Calling the method with two string
+        System.out.println("Check anagram :-"+checkAnagram("maan","aanm"));
+
+        String[] strs = {"art","rat","teams","tar","meats","steam"};
+        System.out.println();
+        System.out.println("Input array :- "+Arrays.toString(strs));
+        System.out.println("Output :- ");
+        List<List<String>> lst=groupAnagrams(strs);
+        for (int i = 0; i < lst.size(); i++) {
+            System.out.println(lst.get(i));
+        }
+    }
+
+}

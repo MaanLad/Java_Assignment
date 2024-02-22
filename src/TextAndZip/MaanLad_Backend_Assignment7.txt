@@ -1,0 +1,131 @@
+=============================1==========================
+package Assignment7;
+
+public class First implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("Run by implementing runnable interface run method");
+    }
+    public static void main(String[] args) {
+            Runnable r1=new First();
+            Thread th1=new Thread(r1);
+            th1.start();
+    }
+
+}
+=============================2==========================
+package Assignment7;
+
+public class Second extends Thread{
+
+    @Override
+    public void run() {
+        super.run();
+        System.out.println("Run by overriding thread class");
+    }
+
+    public static void main(String[] args) {
+        Thread th1=new Second();
+        th1.start();
+    }
+}
+=============================3==========================
+package Assignment7;
+
+public class Third implements Runnable{
+    String name;
+    Thread th;
+    @Override
+    public void run() {
+        try{
+            for (int i = 0; i < 3; i++) {
+                System.out.println(name+i);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    Third(String input){
+        name=input;
+        th=new Thread(this,name);
+        System.out.println("Thread with name "+name+" created");
+        th.start();
+    }
+    public static void main(String[] args) {
+        Third mThread1=new Third("maan");
+        Third mThread2=new Third("jhon");
+        System.out.println("Main method eneded");
+    }
+
+}
+=============================4==========================
+package Assignment7;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+
+public class Fourth {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+        for (int i = 0; i < 10; i++) {
+            Runnable worker = new WorkerThread("" + i);
+            executor.execute(worker);
+        }
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+        }
+        System.out.println("All threads are finished");
+    }
+}
+
+class WorkerThread implements Runnable {
+    private String message;
+
+    public WorkerThread(String s) {
+        this.message = s;
+    }
+
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " (Start) message = " + message);
+        processMessage(); // Simulating some work
+        System.out.println(Thread.currentThread().getName() + " (End)");
+    }
+
+    private void processMessage() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+=============================5==========================
+package Assignment7;
+
+public class Fifth {
+    public static void main(String[] args)  {
+        Thread th1=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Running thread 1");
+            }
+        });
+        Thread th2=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("Thread 2 continues");
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        th1.start();
+        th2.start();
+        System.out.println("Main method ended");
+    }
+}

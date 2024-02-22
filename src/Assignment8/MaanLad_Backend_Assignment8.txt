@@ -1,0 +1,213 @@
+===========================================1===========================================
+package Assignment8;
+
+import java.util.regex.Pattern;
+
+interface FunInterface{
+     void checkString(String str);
+
+}
+public class First {
+    public static void main(String[] args) {
+        String input1="123maan";  //returns false
+        String input2="maan";     //returns true
+        FunInterface fi=(String value)-> System.out.println(Pattern.matches("[a-zA-Z]*",value));
+        fi.checkString(input1);
+        fi.checkString(input2);
+
+    }
+}
+===========================================2===========================================
+package Assignment8;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Second {
+    public static void main(String[] args) {
+        List<Integer> lst=new ArrayList<>();
+        for (int i = 1; i < 8; i++) {
+            lst.add(i);
+        }
+
+        System.out.println("Before:-"+lst.toString());
+
+
+        lst.removeIf(n->n%2==1);
+        //remove odd element in list
+        System.out.println("After:-"+lst.toString());
+    }
+}
+===========================================3===========================================
+package Assignment8;
+
+interface SquareRoot {
+    void anonymousSqrRoot(double input);
+}
+public class Third {
+    public static void main(String[] args) {
+        double input=81;
+        SquareRoot sr= n-> System.out.println("The square root of num "+n+" is "+Math.sqrt(input));
+        sr.anonymousSqrRoot(input);
+    }
+}
+
+===========================================4===========================================
+package Assignment8;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+interface CheckString{
+    void checkStringList(ArrayList<String> str);
+}
+public class Fourth {
+    public static void main(String[] args) {
+        ArrayList<String> lstString=new ArrayList<>();
+        lstString.add("Maan");
+        lstString.add("Jhon");
+        lstString.add("");
+        lstString.add("");
+        lstString.add("Arson");
+        lstString.add("akash");
+        lstString.add("dhruv");
+        lstString.add("aditya");
+        lstString.add("bb");
+
+
+        System.out.println("String List:- "+lstString);
+        //Counting Empty String using Lambda expressions
+        CheckString checkEmpty=n-> System.out.println("Empty count :- "+n.stream().filter(String::isEmpty).count());
+        checkEmpty.checkStringList(lstString);
+
+        //Count String whose length is more than three
+        CheckString checkCount=n-> System.out.println("String length of three count :- "+n.stream().filter(value->value.length()>3).count());
+        checkCount.checkStringList(lstString);
+
+        //Count number of String which starts with "a"
+        CheckString checkCount_a=n-> System.out.println("String count starts with a :- "+n.stream().filter(value-> Pattern.matches("[a|A][a-zA-Z]*",value)).count());
+        checkCount_a.checkStringList(lstString);
+
+        //Remove all empty Strings from List
+        CheckString removeEmptyString=n-> System.out.println("Empty removed :- "+lstString.stream().filter(value->!value.isEmpty()).toList());
+        removeEmptyString.checkStringList(lstString);
+
+        //Create a List with String more than 2 characters
+        CheckString listMorethanTwoChar=n-> System.out.println("List with more than two character :- "+n.stream().filter(value->value.length()>2).toList());
+        listMorethanTwoChar.checkStringList(lstString);
+
+        //Convert String to uppercase and Join them with coma
+        CheckString convertString=n-> System.out.println("To uppercase and join with n , :-"+n.stream().map(String::toUpperCase).collect(Collectors.joining(",")));
+        convertString.checkStringList(lstString);
+
+
+        System.out.println();
+
+        //Create a List of the square of all distinct numbers
+        List<Integer> l = Arrays.asList(1,2,3,4,5,6,6,3,4,2,7,9);
+        System.out.println("List :-"+ l);
+        System.out.println("List squre :- "+ l.stream().distinct().map(x->x*x).toList());
+
+
+        //Get count, min, max, sum, and the average for numbers
+        System.out.println();
+        System.out.println("List:- " +  l.stream().distinct().toList());
+        System.out.println("count:- " +  l.stream().distinct().count());
+        System.out.println("Max:- " +  l.stream().distinct().max(Integer::compareTo).stream().toList().get(0));
+        System.out.println("Min:- " +  l.stream().distinct().min(Integer::compareTo).stream().toList().get(0));
+        System.out.println("Sum:- " +  l.stream().distinct().mapToInt(Integer::intValue).sum());
+        System.out.println("Average :- "+l.stream().distinct().mapToDouble(Integer::doubleValue).average().getAsDouble());
+    }
+}
+===========================================5===========================================
+package Assignment8;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+interface EmployeeFilter{
+    void filter(EmployeeManagementSystem ems);
+}
+
+class Employee{
+    String empName;
+    int salary;
+    int yearsOfExp;
+    String dept;
+
+    Employee(String empName,String dept,int yearsOfExp,int salaray){
+        this.empName=empName;
+        this.salary =salaray;
+        this.dept=dept;
+        this.yearsOfExp=yearsOfExp;
+    }
+}
+
+class EmployeeManagementSystem{
+    static List<Employee> empList=new ArrayList<>();
+    private static EmployeeManagementSystem single_instance = null;
+
+    private EmployeeManagementSystem(){}
+    public static synchronized EmployeeManagementSystem getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new EmployeeManagementSystem();
+
+        return single_instance;
+    }
+    public void addEmployee(Employee emp){
+        empList.add(emp);
+    }
+
+    public List<Employee> getListEmployee(){
+        return empList;
+    }
+}
+public class Fifth {
+    public static void main(String[] args) {
+        EmployeeManagementSystem ems=EmployeeManagementSystem.getInstance();
+        ems.addEmployee(new Employee("Maan","BackendJava",4,300000));
+        ems.addEmployee(new Employee("Aditya","BackendJava",3,400000));
+        ems.addEmployee(new Employee("Tufail","BackendJava",3,300000));
+        ems.addEmployee(new Employee("Jeet","FrontEnd",4,400000));
+        ems.addEmployee(new Employee("Jay","FrontEnd",5,300000));
+
+
+        EmployeeFilter filterByDept=new EmployeeFilter() {
+            @Override
+            public void filter(EmployeeManagementSystem ems) {
+                List<Employee> lstEmp=ems.getListEmployee();
+                Map<String,List<String>> hs=lstEmp.stream().map(n->n.dept).distinct().collect(Collectors.toMap(entry->entry+" ",entry->lstEmp.stream().filter(obj-> Objects.equals(obj.dept, entry)).map(n->n.empName).collect(Collectors.toList())));
+                System.out.println("FilterByDepartment :- "+hs);
+            }
+        };
+        System.out.println();
+        filterByDept.filter(ems);
+
+        EmployeeFilter filterBySalaryRange=new EmployeeFilter() {
+            @Override
+            public void filter(EmployeeManagementSystem ems) {
+                List<Employee> lstEmp=ems.getListEmployee();
+                Map<String,List<String>> hs=lstEmp.stream().map(n->n.salary).distinct().collect(Collectors.toMap(entry->"Salary:-"+entry+"rs ", entry->lstEmp.stream().filter(obj-> Objects.equals(obj.salary, entry)).map(n->n.empName).collect(Collectors.toList())));
+                System.out.println("Filter by salary range :- "+hs);
+            }
+        };
+        System.out.println();
+        filterBySalaryRange.filter(ems);
+
+        EmployeeFilter filterByYearsOfExp=new EmployeeFilter() {
+            @Override
+            public void filter(EmployeeManagementSystem ems) {
+                List<Employee> lstEmp=ems.getListEmployee();
+                Map<String,List<String>> hs=lstEmp.stream().map(n->n.yearsOfExp).distinct().collect(Collectors.toMap(entry->entry+" YearsExperience ",entry->lstEmp.stream().filter(obj-> Objects.equals(obj.yearsOfExp, entry)).map(n->n.empName).collect(Collectors.toList())));
+                System.out.println("Filter by years of experience :- "+hs);
+            }
+        };
+        System.out.println();
+        filterByYearsOfExp.filter(ems);
+    }
+}

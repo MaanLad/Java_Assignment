@@ -1,4 +1,5 @@
-package Assignment6;
+
+package Others;
 
 import javax.swing.plaf.IconUIResource;
 import java.util.Stack;

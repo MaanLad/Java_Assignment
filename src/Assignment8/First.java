@@ -13,6 +13,5 @@ public class First {
         FunInterface fi=(String value)-> System.out.println(Pattern.matches("[a-zA-Z]*",value));
         fi.checkString(input1);
         fi.checkString(input2);
-
     }
 }

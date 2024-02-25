@@ -11,11 +11,11 @@ public class Second {
             lst.add(i);
         }
 
-        System.out.println("Before:-"+lst.toString());
+        System.out.println("Before:-"+ lst);
 
 
         lst.removeIf(n->n%2==1);
         //remove odd element in list
-        System.out.println("After:-"+lst.toString());
+        System.out.println("After:-"+ lst);
     }
 }

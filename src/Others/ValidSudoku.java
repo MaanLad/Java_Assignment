@@ -18,7 +18,7 @@ public class ValidSudoku {
     public static boolean chekBoard(char[][] board){
         //row
         for (int i = 0; i < 9; i++) {
-            char c[];
+            char[] c;
             c=board[i].clone();
             if(chekRow(c)==false) return  false;
         }
@@ -32,7 +32,7 @@ public class ValidSudoku {
             }
         }
         for (int i = 0; i < 9; i++) {
-            char c[];
+            char[] c;
             c=new_bord[i].clone();
             if(chekRow(c)==false) return  false;
         }
@@ -60,7 +60,7 @@ public class ValidSudoku {
 
 
         for (int i = 0; i < 9; i++) {
-            char c[];
+            char[] c;
             c=new_board[i].clone();
             if(chekRow(c)==false) return  false;
         }

@@ -13,8 +13,6 @@ class Bank {
         bankInstances.put(accNo,this);
     }
 
-    ;
-
     Bank(String accNo, int balance) {
         this.accNo = accNo;
         this.balance = balance;

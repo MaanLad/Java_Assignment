@@ -17,7 +17,7 @@ public class ValidPalindrome {
                 continue;
             }
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
         System.out.println(Arrays.equals(sb.toString().toCharArray(),sb.reverse().toString().toCharArray()));
     }
 }

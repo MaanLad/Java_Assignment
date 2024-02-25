@@ -10,7 +10,7 @@ public class Pattern2 {
         for (int i = 0; i <= row; i++) {
             System.out.print(" ");
         }
-        System.out.println(Character.toString(c));
+        System.out.println(c);
 
         for (int i = 0; i < row; i++) {
 
@@ -42,7 +42,7 @@ public class Pattern2 {
         for (int i = 0; i <= row; i++) {
             System.out.print(" ");
         }
-        System.out.println(Character.toString(c));
+        System.out.println(c);
     }
 
     public static void main(String[] args) {

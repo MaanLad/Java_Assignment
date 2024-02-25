@@ -51,7 +51,7 @@ public class First {
                     break;
             }
         }
-        System.out.println("");
+        System.out.println();
         for (String result : results) {
             System.out.println(result);
         }

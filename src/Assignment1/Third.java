@@ -2,7 +2,7 @@ package Assignment1;
 
 public class Third {
 
-    public static void printCount(int x, int temp[]){
+    public static void printCount(int x, int[] temp){
         int count=0;
         for (int i = 0; i < temp.length; i++) {
             if(temp[i]==x){
@@ -22,7 +22,7 @@ public class Third {
     }
     public static void main(String[] args) {
 
-        int arr[]={1,2,3,3,4,5};
+        int[] arr ={1,2,3,3,4,5};
         int[] temp = new int[arr.length];
         int k = 0;
 

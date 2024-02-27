@@ -82,7 +82,6 @@ public class PubSubMessagingSystem {
 
         Subscriber subscriber1 = new Subscriber("Subscriber1", messageQueue1);
         Subscriber subscriber2 = new Subscriber("Subscriber2", messageQueue2);
-        Subscriber subscriber3 = new Subscriber("Subscriber3", messageQueue2);
 
         // Simulate message subscribing
         new Thread(subscriber1::subscribeToMessages).start();

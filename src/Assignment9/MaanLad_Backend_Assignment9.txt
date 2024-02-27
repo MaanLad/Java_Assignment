@@ -1,0 +1,195 @@
+==============================================================1============================================================================
+package Assignment9;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+class Message {
+    private String content;
+
+    public Message(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+}
+
+class MessageQueue {
+    private BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
+
+    public synchronized void publish(Message message) {
+        try {
+            queue.put(message);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Error publishing message: " + e.getMessage());
+        }
+    }
+
+    public Message subscribe() {
+        try {
+            return queue.take();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Error subscribing to message: " + e.getMessage());
+            return null;
+        }
+    }
+}
+
+class Publisher {
+    private String name;
+    private MessageQueue messageQueue;
+
+    public Publisher(String name, MessageQueue messageQueue) {
+        this.name = name;
+        this.messageQueue = messageQueue;
+    }
+
+    public void publishMessage(String content) {
+        Message message = new Message(content);
+        System.out.println("Publisher " + name + " publishing message: " + content);
+        messageQueue.publish(message);
+    }
+}
+
+class Subscriber {
+    private String name;
+    private MessageQueue messageQueue;
+
+    public Subscriber(String name, MessageQueue messageQueue) {
+        this.name = name;
+        this.messageQueue = messageQueue;
+    }
+
+    public void subscribeToMessages() {
+        while (true) {
+            Message message = messageQueue.subscribe();
+            System.out.println("Subscriber " + name + " received message: " + message.getContent());
+            // Process the message as needed
+        }
+    }
+}
+
+public class PubSubMessagingSystem {
+    public static void main(String[] args) {
+        MessageQueue messageQueue1 = new MessageQueue();
+        MessageQueue messageQueue2=new MessageQueue();
+
+        Publisher publisher1 = new Publisher("Publisher1", messageQueue1);
+        Publisher publisher2 = new Publisher("Publisher2", messageQueue2);
+
+        Subscriber subscriber1 = new Subscriber("Subscriber1", messageQueue1);
+        Subscriber subscriber2 = new Subscriber("Subscriber2", messageQueue2);
+
+        // Simulate message subscribing
+        new Thread(subscriber1::subscribeToMessages).start();
+        new Thread(subscriber2::subscribeToMessages).start();
+
+        // Simulate message publishing
+        new Thread(() -> publisher1.publishMessage("Hello from Publisher1")).start();
+        new Thread(() -> publisher1.publishMessage("Hello from Publisher1 second time")).start();
+        new Thread(() -> publisher2.publishMessage("Greetings from Publisher2")).start();
+        new Thread(()->publisher2.publishMessage("Second message from publisher2 ")).start();
+    }
+}
+==============================================================2============================================================================
+package Assignment9;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+interface Task{
+    void execute();
+}
+class Worker implements Runnable{
+    private final Queue<Task> TaskQ;
+    private final List<String> results;
+
+    public Worker(Queue<Task> taskQ, List<String> results) {
+        this.TaskQ = taskQ;
+        this.results = results;
+    }
+
+    @Override
+    public void run() {
+        while (true){
+            Task task;
+            synchronized (TaskQ){
+                while (TaskQ.isEmpty()){
+                    try {
+                        TaskQ.wait();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        return;
+                    }
+                }
+                task = TaskQ.poll();
+            }
+            if (task != null){
+                task.execute();
+                synchronized (results){
+                    results.add(Thread.currentThread().getName() +": Task Completed");
+                }
+            }
+        }
+    }
+}
+
+class Master{
+    private final Queue<Task> taskQ;
+    private final List<String> results;
+    private final List<Worker> workers;
+
+    Master(int maxWorker){
+        taskQ = new LinkedBlockingQueue<>();
+        results = new ArrayList<>();
+        workers = new ArrayList<>();
+        for (int i = 0; i < maxWorker; i++) {
+            Worker worker = new Worker(taskQ,results);
+            workers.add(worker);
+            new Thread(worker,"Worker-"+i).start();
+        }
+    }
+    public void submitWork(Task task){
+        synchronized (taskQ){
+            taskQ.add(task);
+            taskQ.notifyAll();
+        }
+    }
+    public List<String> getResults(){
+        return results;
+    }
+}
+
+public class DistrubutedTaskExecFramework  {
+    public static void main(String[] args) throws InterruptedException {
+        Master master = new Master(2);
+
+        Task t1 = () -> System.out.println("Task 1 doing and returning result");
+        Task t2 = () -> System.out.println("Task 2 doing and returning result");
+        Task t3 = () -> System.out.println("Task 3 doing and returning result");
+        Task t4 = () -> System.out.println("Task 4 doing and returning result");
+        Task t5 = () -> System.out.println("Task 5 doing and returning result");
+        Task t6 = () -> System.out.println("Task 6 doing and returning result");
+
+        master.submitWork(t1);
+        master.submitWork(t2);
+        master.submitWork(t3);
+        master.submitWork(t4);
+        master.submitWork(t5);
+        master.submitWork(t6);
+
+        Thread.sleep(500);
+
+        System.out.println("Printing Result");
+        for (String str : master.getResults()) {
+            System.out.println(str);
+        }
+    }
+}

@@ -1,4 +1,4 @@
-package Assignment9;
+package TextAndZip;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

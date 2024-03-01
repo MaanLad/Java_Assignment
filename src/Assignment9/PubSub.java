@@ -1,8 +1,5 @@
 package Assignment9;
 
-
-import jdk.dynalink.beans.StaticClass;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -78,5 +75,8 @@ public class PubSub {
 
     sub1.getMessage();
     sub2.getMessage();
+
+
+
     }
 }

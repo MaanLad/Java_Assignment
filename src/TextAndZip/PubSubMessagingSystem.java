@@ -47,7 +47,7 @@ class Publisher {
         this.messageQueue = messageQueue;
     }
 
-    public void publishMessage(String content) {
+    public synchronized void publishMessage(String content) {
         Message message = new Message(content);
         System.out.println("Publisher " + name + " publishing message: " + content);
         messageQueue.publish(message);
@@ -57,6 +57,7 @@ class Publisher {
 class Subscriber {
     private String name;
     private MessageQueue messageQueue;
+    static Message message;
 
     public Subscriber(String name, MessageQueue messageQueue) {
         this.name = name;
@@ -64,8 +65,8 @@ class Subscriber {
     }
 
     public void subscribeToMessages() {
+            message=messageQueue.subscribe();
         while (true) {
-            Message message = messageQueue.subscribe();
             System.out.println("Subscriber " + name + " received message: " + message.getContent());
             // Process the message as needed
         }
@@ -75,13 +76,13 @@ class Subscriber {
 public class PubSubMessagingSystem {
     public static void main(String[] args) {
         MessageQueue messageQueue1 = new MessageQueue();
-        MessageQueue messageQueue2=new MessageQueue();
+//        MessageQueue messageQueue2=new MessageQueue();
 
         Publisher publisher1 = new Publisher("Publisher1", messageQueue1);
-        Publisher publisher2 = new Publisher("Publisher2", messageQueue2);
+//        Publisher publisher2 = new Publisher("Publisher2", messageQueue2);
 
         Subscriber subscriber1 = new Subscriber("Subscriber1", messageQueue1);
-        Subscriber subscriber2 = new Subscriber("Subscriber2", messageQueue2);
+        Subscriber subscriber2 = new Subscriber("Subscriber2", messageQueue1);
 
         // Simulate message subscribing
         new Thread(subscriber1::subscribeToMessages).start();
@@ -90,7 +91,7 @@ public class PubSubMessagingSystem {
         // Simulate message publishing
         new Thread(() -> publisher1.publishMessage("Hello from Publisher1")).start();
         new Thread(() -> publisher1.publishMessage("Hello from Publisher1 second time")).start();
-        new Thread(() -> publisher2.publishMessage("Greetings from Publisher2")).start();
-        new Thread(()->publisher2.publishMessage("Second message from publisher2 ")).start();
+//        new Thread(() -> publisher2.publishMessage("Greetings from Publisher2")).start();
+//        new Thread(()->publisher2.publishMessage("Second message from publisher2 ")).start();
     }
 }

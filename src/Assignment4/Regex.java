@@ -22,7 +22,7 @@ public class Regex {
 //        System.out.println(Pattern.matches("[amn]?", "am"));//false (a or m or n must come one time)
 //
 //        System.out.println("+ quantifier ....");
-//        System.out.println(Pattern.matches("[amn]*", ""));//true (a or m or n once or more times)
+//        System.out.println(Pattern.matches("[amn]*", "aaaaammnaanana"));//true (a or m or n once or more times)
 //        System.out.println(Pattern.matches("[amn]+", "aaa"));//true (a comes more than one time)
 //        System.out.println(Pattern.matches("[amn]+", "aammmnn"));//true (a or m or n comes more than once)
 //        System.out.println(Pattern.matches("[amn]+", "aazzta"));//false (z and t are not matching pattern)
@@ -43,7 +43,7 @@ public class Regex {
 //        System.out.println(Pattern.matches("\\D", "1"));//false (digit)
 //        System.out.println(Pattern.matches("\\D", "4443"));//false (digit)
 //        System.out.println(Pattern.matches("\\D", "323abc"));//false (digit and char)
-//        System.out.println(Pattern.matches("\\D", "m"));//true (non-digit and comes once)
+        System.out.println(Pattern.matches("^\\D?", "m"));//true (non-digit and comes once)
 ////
         System.out.println("metacharacters D with quantifier....");
         System.out.println(Pattern.matches("\\D*", "mak"));//true (non-digit and may come 0 or more times)

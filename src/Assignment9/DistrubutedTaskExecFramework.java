@@ -71,15 +71,22 @@ class Master{
 
 public class DistrubutedTaskExecFramework  {
     public static void main(String[] args) throws InterruptedException {
-        Master master = new Master(2);
+        Master master = new Master(4);
 
-        Task t1 = () -> System.out.println("Task 1 doing and returning result");
-        Task t2 = () -> System.out.println("Task 2 doing and returning result");
-        Task t3 = () -> System.out.println("Task 3 doing and returning result");
-        Task t4 = () -> System.out.println("Task 4 doing and returning result");
-        Task t5 = () -> System.out.println("Task 5 doing and returning result");
-        Task t6 = () -> System.out.println("Task 6 doing and returning result");
 
+        Task t1 = () -> System.out.println("Task 1 done and returning result");
+        Task t2 = () -> System.out.println("Task 2 done and returning result");
+        Task t3 = () -> System.out.println("Task 3 done and returning result");
+        Task t4 = () -> System.out.println("Task 4 done and returning result");
+        Task t5 = () -> System.out.println("Task 5 done and returning result");
+        Task t6 = () -> System.out.println("Task 6 done and returning result");
+
+//        new Thread(()->master.submitWork(t1)).start();
+//        new Thread(()->master.submitWork(t2)).start();
+//        new Thread(()->master.submitWork(t3)).start();
+//        new Thread(()->master.submitWork(t4)).start();
+//        new Thread(()->master.submitWork(t5)).start();
+//        new Thread(()->master.submitWork(t6)).start();
         master.submitWork(t1);
         master.submitWork(t2);
         master.submitWork(t3);

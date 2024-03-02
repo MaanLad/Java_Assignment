@@ -2,6 +2,8 @@ package Assignment4;
 
 import java.util.regex.Pattern;
 
+//https://www.logicbig.com/tutorials/core-java-tutorial/java-regular-expressions/regex-lookahead.html#:~:text=Lookaheads%20are%20zero%20length%20assertions%2C%20that%20means%20they,which%20we%20will%20cover%20in%20the%20next%20tutorial.
+
 public class RegexS {
     public static void main(String[] args) {
         //1.Create a regular expression that accepts alphanumeric characters only. Its length must be six characters long only.

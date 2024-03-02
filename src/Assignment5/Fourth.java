@@ -12,7 +12,7 @@ public class Fourth {
             incomeTax=((value-150000)*0.3)+(0.2*90000)+(0.1*10000);
         }
         else if(value>60000){
-            incomeTax=((value-60000)*0.2)+(0.1*100000);
+            incomeTax=((value-60000)*0.2)+(0.1*10000);
         }
         else if(value>50000){
             incomeTax=(value-50000)*0.1;
@@ -20,6 +20,6 @@ public class Fourth {
         else{
             incomeTax=0;
         }
-        System.out.println("Income is:- "+incomeTax);
+        System.out.println("IncomeTax is:- "+incomeTax);
     }
 }

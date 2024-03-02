@@ -1,6 +1,4 @@
-package Semaphore;
-
-import java.util.concurrent.Semaphore;
+package Practice;
 
 class BoundedSemaphoreEx {
     int signal;
@@ -28,46 +26,20 @@ class BoundedSemaphoreEx {
         if (signal == 0) {
             notifyAll();
         }
+
         signal++;
     }
 
     public synchronized void release() throws InterruptedException {
         if (signal == 0) {
-            wait();
+//            wait();
             throw new InterruptedException("You can not release lock before acquiring it");
         }
 
         if (signal == capacity) {
             notifyAll();
         }
-        signal--;
-    }
-}
 
-class BoundedSemaphoreEx2{
-    int signal;
-    int totalPermit;
-    BoundedSemaphoreEx2(int totalPermit){
-        this.totalPermit=totalPermit;
-    }
-
-    public synchronized void acquireResource() throws InterruptedException {
-        while(signal==totalPermit){
-            wait();
-        }
-        if(signal==0){
-            notifyAll();
-        }
-        signal++;
-    }
-
-    public synchronized void releaseResource() throws InterruptedException{
-        while(signal==0){
-            wait();
-        }
-        if(signal==totalPermit){
-            notifyAll();
-        }
         signal--;
     }
 }
@@ -75,7 +47,6 @@ class BoundedSemaphoreEx2{
 public class BoundedSemaphore {
 
     public static void main(String[] args) {
-//        Semaphore semaphore=new Semaphore(3,true);
         BoundedSemaphoreEx boundedSemaphoreEx = new BoundedSemaphoreEx(2);
 
         BoundThread boundThread1 = new BoundThread("A", boundedSemaphoreEx);
@@ -102,14 +73,14 @@ class BoundThread extends Thread {
         try {
             System.out.println("Thread " + name + " : acquiring lock...");
             System.out.println("Thread " + name + " : available Semaphore permits is: " + (boundedSemaphoreEx.capacity - boundedSemaphoreEx.signal));
-            boundedSemaphoreEx.release();
+//            boundedSemaphoreEx.release();
             boundedSemaphoreEx.acquire();
             System.out.println("Thread " + name + " : got the permit!");
             try {
                 System.out.println("Thread " + name + " : is performing operation ");
                 for (int i = 1; i <= 5; i++) {
 //                     + i + ", available Semaphore permits : " + Counting.semaphore.availablePermits());
-                    Thread.sleep(3000);
+                    Thread.sleep(200);
                 }
             } finally {
                 System.out.println("Thread " + name + " : releasing lock...");

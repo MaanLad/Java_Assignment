@@ -13,10 +13,11 @@ public class Fifth {
         System.out.println(s1);
         System.out.print("S2 ");
         System.out.println(s2);
-        s1 = s1 + ", " + s2;
+        s1 = s1 + "," + s2;
 
 
-        Pattern r = Pattern.compile("^(.*?),\\s*(.*?)$");
+//        Pattern r = Pattern.compile("^(.*?),\\s*(.*?)$");
+        Pattern r = Pattern.compile("^[a-z](?=\\s)$");
         Matcher m = r.matcher(s1);
 
         if (m.find()) {

@@ -16,14 +16,14 @@ public class First {
     public static boolean isPalindrome(int num){
         int reversed= 0;
         int rem = 0 ;
-        int orginal = num;
+        int original = num;
 
         while (num > 0){
             rem = num % 10;
             reversed = (reversed * 10) + rem;
             num /= 10;
         }
-        return orginal == reversed;
+        return original == reversed;
     }
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);

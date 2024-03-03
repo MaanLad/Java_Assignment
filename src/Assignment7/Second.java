@@ -11,5 +11,12 @@ public class Second extends Thread{
     public static void main(String[] args) {
         Thread th1=new Second();
         th1.start();
+
+        Thread th2=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Hello");
+            }
+        });
     }
 }

@@ -11,17 +11,8 @@ interface CheckString{
 }
 public class Fourth {
     public static void main(String[] args) {
-        ArrayList<String> lstString=new ArrayList<>();
-        lstString.add("Maan");
-        lstString.add("Jhon");
-        lstString.add("");
-        lstString.add("");
-        lstString.add("Arson");
-        lstString.add("akash");
-        lstString.add("dhruv");
-        lstString.add("aditya");
-        lstString.add("bb");
-
+        String[] strArray={"Maan","Jhon","","","Arson","akash","dhruv","aditya","bb"};
+        ArrayList<String> lstString=new ArrayList<>(Arrays.asList(strArray));
 
         System.out.println("String List:- "+lstString);
         //Counting Empty String using Lambda expressions
@@ -37,6 +28,7 @@ public class Fourth {
         checkCount_a.checkStringList(lstString);
 
         //Remove all empty Strings from List
+        //Or another way :- lstString.removeIf(String::isEmpty);
         CheckString removeEmptyString=n-> System.out.println("Empty removed :- "+lstString.stream().filter(value->!value.isEmpty()).toList());
         removeEmptyString.checkStringList(lstString);
 

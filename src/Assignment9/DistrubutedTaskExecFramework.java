@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 interface Task{
-    void execute();
+    String execute();
 }
 class Worker implements Runnable{
     private final Queue<Task> TaskQ;
@@ -34,9 +34,9 @@ class Worker implements Runnable{
                 task = TaskQ.poll();
             }
             if (task != null){
-                task.execute();
+                String taskResult =task.execute();
                 synchronized (results){
-                    results.add(Thread.currentThread().getName() +": Task Completed");
+                    results.add(Thread.currentThread().getName() +": "+taskResult+" Completed");
                 }
             }
         }
@@ -74,25 +74,30 @@ public class DistrubutedTaskExecFramework  {
         Master master = new Master(4);
 
 
-        Task t1 = () -> System.out.println("Task 1 done and returning result");
-        Task t2 = () -> System.out.println("Task 2 done and returning result");
-        Task t3 = () -> System.out.println("Task 3 done and returning result");
-        Task t4 = () -> System.out.println("Task 4 done and returning result");
-        Task t5 = () -> System.out.println("Task 5 done and returning result");
-        Task t6 = () -> System.out.println("Task 6 done and returning result");
+        Task t1 = () -> {System.out.println("Task 1 done and returning result");return "Task1";};
+        Task t2 = () -> {System.out.println("Task 2 done and returning result");return "Task2";};
+        Task t3 = () -> {System.out.println("Task 3 done and returning result");return "Task3";};
+        Task t4 = () -> {System.out.println("Task 4 done and returning result");return "Task4";};
+        Task t5 = () -> {System.out.println("Task 5 done and returning result");return "Task5";};
+        Task t6 = () -> {System.out.println("Task 6 done and returning result");return "Task6";};
+//        Task t2 = () -> System.out.println("Task 2 done and returning result");
+//        Task t3 = () -> System.out.println("Task 3 done and returning result");
+//        Task t4 = () -> System.out.println("Task 4 done and returning result");
+//        Task t5 = () -> System.out.println("Task 5 done and returning result");
+//        Task t6 = () -> System.out.println("Task 6 done and returning result");
 
-//        new Thread(()->master.submitWork(t1)).start();
-//        new Thread(()->master.submitWork(t2)).start();
-//        new Thread(()->master.submitWork(t3)).start();
-//        new Thread(()->master.submitWork(t4)).start();
-//        new Thread(()->master.submitWork(t5)).start();
-//        new Thread(()->master.submitWork(t6)).start();
-        master.submitWork(t1);
-        master.submitWork(t2);
-        master.submitWork(t3);
-        master.submitWork(t4);
-        master.submitWork(t5);
-        master.submitWork(t6);
+        new Thread(()->master.submitWork(t1)).start();
+        new Thread(()->master.submitWork(t2)).start();
+        new Thread(()->master.submitWork(t3)).start();
+        new Thread(()->master.submitWork(t4)).start();
+        new Thread(()->master.submitWork(t5)).start();
+        new Thread(()->master.submitWork(t6)).start();
+//        master.submitWork(t1);
+//        master.submitWork(t2);
+//        master.submitWork(t3);
+//        master.submitWork(t4);
+//        master.submitWork(t5);
+//        master.submitWork(t6);
 
         Thread.sleep(500);
 

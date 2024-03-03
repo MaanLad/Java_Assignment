@@ -5,7 +5,10 @@ import java.util.concurrent.Executors;
 
 public class Fourth{
     public static void main(String[] args) {
-        ExecutorService executorService= Executors.newFixedThreadPool(3);
+        ExecutorService executorService= Executors.newFixedThreadPool(2);
+        Runnable r=()-> System.out.println("hello ");
+        Thread th1=new Thread(r);
+        th1.start();
         for (int i = 0; i < 10; i++) {
             Runnable worker=new WorkerThread(""+i);
             executorService.execute(worker);

@@ -25,8 +25,12 @@ public class First_3 {
 
         List<Integer> distList = arrList.stream().distinct().toList();
         List<Long> lst = new ArrayList<>(arrList.stream().distinct().map(entry -> arrList.stream().filter(entry::equals).count()).toList());
-        int[] res = new int[arrList.stream().distinct().toList().size()];
+//        int[] res = new int[arrList.stream().distinct().toList().size()];
+//        System.out.println(Arrays.toString(res));
+        System.out.println(distList);
+        System.out.println(lst);
 
+        System.out.println(map);
 
     }
 }

@@ -11,6 +11,7 @@ public class Third {
     }
 
     public static void main(String[] args) {
+//        System.out.println(Stream.iterate(new int[]{0,1},s->new int[]{s[1],s[0]+s[1]}).limit(10).map(n->n[0]).collect(Collectors.toList()));
         System.out.println(generateFib(50));
     }
 }

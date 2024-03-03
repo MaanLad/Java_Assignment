@@ -8,6 +8,7 @@ public class Fifth{
                 System.out.println("Running thread 1");
             }
         });
+
         Thread th2=new Thread(new Runnable() {
             @Override
             public void run() {
@@ -20,9 +21,7 @@ public class Fifth{
             }
         });
         th1.start();
-        th1.join();
         th2.start();
-        th2.join();
-        System.out.println(Thread.currentThread().getName());
+        System.out.println(Thread.currentThread().getName()+" Ended");
     }
 }

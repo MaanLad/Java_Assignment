@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 public class CountingSemaphore {
 
     public static void main(String[] args) {
-        Semaphore semaphore = new Semaphore(3);
+        Semaphore semaphore = new Semaphore(3,true);
         System.out.println("Total available Semaphore permits is: " + semaphore.availablePermits());
 
         DemoThread t1 = new DemoThread("A", semaphore);
@@ -30,7 +30,7 @@ class DemoThread extends Thread {
         this.semaphore = semaphore;
     }
 
-    public void run() {
+    public synchronized void run() {
         try {
             System.out.println("Thread " + name + " : acquiring lock...");
             System.out.println("Thread " + name + " : available Semaphore permits is: " + semaphore.availablePermits());

@@ -102,7 +102,7 @@ class BoundThread extends Thread {
         try {
             System.out.println("Thread " + name + " : acquiring lock...");
             System.out.println("Thread " + name + " : available Semaphore permits is: " + (boundedSemaphoreEx.capacity - boundedSemaphoreEx.signal));
-            boundedSemaphoreEx.release();
+//            boundedSemaphoreEx.release();
             boundedSemaphoreEx.acquire();
             System.out.println("Thread " + name + " : got the permit!");
             try {

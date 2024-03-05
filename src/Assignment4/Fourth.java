@@ -7,11 +7,11 @@ public class Fourth {
 //    4.Print first letter of each word in a string using regex
     public static void main(String[] args) {
         String s = "The monarch";
-        Pattern p = Pattern.compile("\\b\\w");
+        Pattern p = Pattern.compile("(?=\\b)[a-zA-Z]");
         Matcher m1 = p.matcher(s);
         System.out.println("First letter of each word from string \"" + s + "\" : ");
         while (m1.find()) {
-            System.out.print(m1.group());
+            System.out.println(m1.group());
         }
     }
 }

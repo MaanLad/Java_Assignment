@@ -18,6 +18,9 @@ public class Fifth {
 
 //        Pattern r = Pattern.compile("^(.*?),\\s*(.*?)$");
         Pattern r = Pattern.compile("^[a-z](?=\\s)$");
+//        String[] word={"aaaa","asas","able","ability","actt","actor","access"};
+//        String[] puzzles={"aboveyz","abrodyz","abslute","absoryz","actresz","gaswxyz"};
+//        Pattern r = Pattern.compile("a(?=.*a)(?=.*b)(?=.*o)(?=.*v)(?=.*e)(?=.*y)(?=.*z)[a-zA-Z]*");
         Matcher m = r.matcher(s1);
 
         if (m.find()) {
